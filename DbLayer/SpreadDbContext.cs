@@ -26,6 +26,10 @@ namespace ArbitrageDomain.DbLayer
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PairSpread>().HasKey(p => p.Id);
+
+            modelBuilder.Entity<PairSpread>()
+                .HasIndex(p => new { p.Date, p.FirstFutures, p.SecondFutures })
+                .IsUnique();
         }
     }
 }
