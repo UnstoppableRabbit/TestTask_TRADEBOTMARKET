@@ -9,5 +9,6 @@ namespace ArbitrageDomain.Interfaces
         public void UpdateSpread(int id, decimal firstFuturesPrice, decimal secondFuturesPrice);
         public Task UpdateSpreadAsync(int id, decimal firstFuturesPrice, decimal secondFuturesPrice);
         public Task<(bool, int)> AnySpreadToUpdate(PairSpread spread);
+        public Task<(bool, int)> AnySpreadLikeThis(PairSpread spread);
     }
 }

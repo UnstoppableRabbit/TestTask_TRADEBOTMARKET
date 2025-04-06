@@ -97,5 +97,13 @@ namespace ArbitrageRepository
             else
                 return (false, 0);
         }
+
+        public async Task<(bool, int)> AnySpreadLikeThis(PairSpread spread)
+        {
+            if (await _context.PairSpreads.AnyAsync(x => x.FirstFutures == spread.FirstFutures && x.SecondFutures == spread.SecondFutures && x.Date == spread.Date))
+                return (true, (await _context.PairSpreads.FirstAsync(x => x.FirstFutures == spread.FirstFutures && x.SecondFutures == spread.SecondFutures && x.Date == spread.Date)).Id);
+            else
+                return (false, 0);
+        }
     }
 }

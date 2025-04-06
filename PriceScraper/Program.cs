@@ -4,8 +4,17 @@ using ArbitrageRepository;
 using Microsoft.EntityFrameworkCore;
 using PriceScraper.Scheduler.BackgroundWorker;
 using Quartz;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration) // Чтение конфигурации из appsettings.json
+    .Enrich.FromLogContext()
+    .CreateLogger();
+
+// Используем Serilog для логирования
+builder.Host.UseSerilog();
 
 builder.Services.AddHttpClient();
 builder.Services.AddDbContext<SpreadDbContext>(options =>
@@ -41,6 +50,8 @@ builder.Services.AddQuartz(q =>
 builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
 
 var app = builder.Build();
+
+app.UseSerilogRequestLogging();
 
 app.UseSwagger();
 app.UseSwaggerUI();

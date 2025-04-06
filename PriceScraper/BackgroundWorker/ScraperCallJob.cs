@@ -29,18 +29,32 @@ namespace PriceScraper.Scheduler.BackgroundWorker
 
             try
             {
+                _logger.LogInformation("Starting scraper call to {Url} at {Time}", url, DateTimeOffset.Now);
+
                 var client = _httpClientFactory.CreateClient();
                 var response = await client.GetStringAsync(url);
                 var result = JsonConvert.DeserializeObject<List<PairSpread>>(response);
-                foreach (var item in result) 
+
+                _logger.LogInformation("Received {Count} items from {Url}", result.Count, url);
+
+                foreach (var item in result)
                 {
-                    var anyLikeThis = await _spreadRepository.AnySpreadToUpdate(item);
-                    if (anyLikeThis.Item1)                                  //здесь я, в случае если в прошлый раз не удалось корректно получить цену на 1 из фьючерсов,
-                                                                            //и при этом данные по этой дате пришли в этой итерации переписываю их в базе
-                       await _spreadRepository.UpdateSpreadAsync(anyLikeThis.Item2, item.FirstFuturesPrice, item.SecondFuturesPrice); 
+                    var anyToUpdate = await _spreadRepository.AnySpreadToUpdate(item);
+                    if (anyToUpdate.Item1)
+                    {
+                        await _spreadRepository.UpdateSpreadAsync(anyToUpdate.Item2, item.FirstFuturesPrice, item.SecondFuturesPrice);
+                        _logger.LogInformation("Updated spread for {Date}", item.Date);
+                    }
                     else
-                        await _spreadRepository.SaveSpreadAsync(item);
+                    {
+                        if (!(await _spreadRepository.AnySpreadLikeThis(item)).Item1)
+                        {
+                            await _spreadRepository.SaveSpreadAsync(item);
+                            _logger.LogInformation("Saved new spread for {Date}", item.Date);
+                        }
+                    }
                 }
+
                 _logger.LogInformation("Scraper call to {Url} succeeded at {Time}", url, DateTimeOffset.Now);
             }
             catch (Exception ex)

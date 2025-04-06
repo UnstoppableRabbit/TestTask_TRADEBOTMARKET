@@ -1,6 +1,7 @@
 ﻿using ArbitrageDomain.Config;
 using ArbitrageDomain.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 
 namespace BinanceScraperService.Extensions
 {
@@ -10,6 +11,8 @@ namespace BinanceScraperService.Extensions
         {
             var section = configuration.GetSection("BinancePairs");
             var configs = section.GetChildren();
+
+            var logger = Log.ForContext<BinanceScraperService>();
 
             foreach (var configSection in configs)
             {
@@ -21,7 +24,7 @@ namespace BinanceScraperService.Extensions
                 {
                     var httpClientFactory = provider.GetRequiredService<IHttpClientFactory>();
                     var client = httpClientFactory.CreateClient(name);
-                    return new BinanceScraperService(config, client, name, new Logger<BinanceScraperService>(new LoggerFactory()));
+                    return new BinanceScraperService(config, client, name, logger);
                 });
             }
 

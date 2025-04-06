@@ -3,6 +3,7 @@ using ArbitrageDomain.Interfaces;
 using ArbitrageDomain.Model;
 using System.Globalization;
 using System.Text.Json;
+using Serilog;
 
 namespace BinanceScraperService
 {
@@ -11,8 +12,8 @@ namespace BinanceScraperService
         public string Name { get; }
         private BinanceScraperConfig _config;
         private readonly HttpClient _httpClient;
-        private ILogger<BinanceScraperService> _logger;
-        public BinanceScraperService(BinanceScraperConfig config, HttpClient httpClient, string name, ILogger<BinanceScraperService> logger)
+        private readonly Serilog.ILogger _logger;
+        public BinanceScraperService(BinanceScraperConfig config, HttpClient httpClient, string name, Serilog.ILogger logger)
         {
             _config = config;
             _httpClient = httpClient;
@@ -50,7 +51,7 @@ namespace BinanceScraperService
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Error while fetching symbols: {ex.Message}");
+                _logger.Error($"Error while fetching symbols: {ex.Message}");
                 throw; 
             }
         }
@@ -74,7 +75,7 @@ namespace BinanceScraperService
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Error while fetching klines for symbol {symbol}: {ex.Message}");
+                _logger.Error($"Error while fetching klines for symbol {symbol}: {ex.Message}");
                 throw;
             }
         }
@@ -130,7 +131,7 @@ namespace BinanceScraperService
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Error while fetching prices for futures: {ex.Message}");
+                _logger.Error($"Error while fetching prices for futures: {ex.Message}");
                 throw; 
             }
         }

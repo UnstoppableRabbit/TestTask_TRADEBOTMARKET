@@ -1,0 +1,32 @@
+2025-04-07 01:06:03.685 +05:00 [INF] Now listening on: https://localhost:7282
+2025-04-07 01:06:03.727 +05:00 [INF] Now listening on: http://localhost:5123
+2025-04-07 01:06:03.729 +05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-04-07 01:06:03.732 +05:00 [INF] Hosting environment: Development
+2025-04-07 01:06:03.733 +05:00 [INF] Content root path: D:\Новая папка\PriceScraper\BinanceScraperService
+2025-04-07 01:06:04.244 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7282/swagger/index.html - null null
+2025-04-07 01:06:04.482 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7282/swagger/index.html - 200 null text/html;charset=utf-8 239.5468ms
+2025-04-07 01:06:04.522 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7282/_vs/browserLink - null null
+2025-04-07 01:06:04.522 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7282/_framework/aspnetcore-browser-refresh.js - null null
+2025-04-07 01:06:04.530 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7282/_framework/aspnetcore-browser-refresh.js - 200 13778 application/javascript; charset=utf-8 7.0107ms
+2025-04-07 01:06:04.553 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7282/_vs/browserLink - 200 null text/javascript; charset=UTF-8 30.6229ms
+2025-04-07 01:06:04.581 +05:00 [INF] Request starting HTTP/2 GET https://localhost:7282/swagger/v1/swagger.json - null null
+2025-04-07 01:06:04.651 +05:00 [INF] Request finished HTTP/2 GET https://localhost:7282/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 69.1264ms
+2025-04-07 01:07:02.601 +05:00 [INF] Request starting HTTP/1.1 GET https://localhost:7282/api/prices/BTCUSD_QUARTER_BIQUARTER - null null
+2025-04-07 01:07:02.607 +05:00 [INF] Executing endpoint 'BinanceScraperService.Controllers.PricesController.GetSpreads (BinanceScraperService)'
+2025-04-07 01:07:02.632 +05:00 [INF] Route matched with {action = "GetSpreads", controller = "Prices"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetSpreads(System.String) on controller BinanceScraperService.Controllers.PricesController (BinanceScraperService).
+2025-04-07 01:07:02.647 +05:00 [INF] Start processing HTTP request GET https://dapi.binance.com/dapi/v1/exchangeInfo
+2025-04-07 01:07:02.649 +05:00 [INF] Sending HTTP request GET https://dapi.binance.com/dapi/v1/exchangeInfo
+2025-04-07 01:07:04.321 +05:00 [INF] Received HTTP response headers after 1669.9382ms - 200
+2025-04-07 01:07:04.324 +05:00 [INF] End processing HTTP request after 1680.1502ms - 200
+2025-04-07 01:07:04.630 +05:00 [INF] Start processing HTTP request GET https://dapi.binance.com/dapi/v1/klines?symbol=BTCUSD_250627&interval=1d
+2025-04-07 01:07:04.631 +05:00 [INF] Sending HTTP request GET https://dapi.binance.com/dapi/v1/klines?symbol=BTCUSD_250627&interval=1d
+2025-04-07 01:07:04.927 +05:00 [INF] Received HTTP response headers after 293.7579ms - 200
+2025-04-07 01:07:04.928 +05:00 [INF] End processing HTTP request after 308.2773ms - 200
+2025-04-07 01:07:04.931 +05:00 [INF] Start processing HTTP request GET https://dapi.binance.com/dapi/v1/klines?symbol=BTCUSD_250926&interval=1d
+2025-04-07 01:07:04.932 +05:00 [INF] Sending HTTP request GET https://dapi.binance.com/dapi/v1/klines?symbol=BTCUSD_250926&interval=1d
+2025-04-07 01:07:05.236 +05:00 [INF] Received HTTP response headers after 291.6704ms - 200
+2025-04-07 01:07:05.239 +05:00 [INF] End processing HTTP request after 307.8629ms - 200
+2025-04-07 01:07:05.258 +05:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ArbitrageDomain.Model.PairSpread, ArbitrageDomain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-04-07 01:07:05.290 +05:00 [INF] Executed action BinanceScraperService.Controllers.PricesController.GetSpreads (BinanceScraperService) in 2642.8513ms
+2025-04-07 01:07:05.295 +05:00 [INF] Executed endpoint 'BinanceScraperService.Controllers.PricesController.GetSpreads (BinanceScraperService)'
+2025-04-07 01:07:05.296 +05:00 [INF] Request finished HTTP/1.1 GET https://localhost:7282/api/prices/BTCUSD_QUARTER_BIQUARTER - 200 null application/json; charset=utf-8 2695.0504ms
