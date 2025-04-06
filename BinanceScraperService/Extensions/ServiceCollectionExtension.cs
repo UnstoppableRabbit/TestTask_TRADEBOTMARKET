@@ -21,7 +21,7 @@ namespace BinanceScraperService.Extensions
                 {
                     var httpClientFactory = provider.GetRequiredService<IHttpClientFactory>();
                     var client = httpClientFactory.CreateClient(name);
-                    return new BinanceScraperService(config, client, name);
+                    return new BinanceScraperService(config, client, name, new Logger<BinanceScraperService>(new LoggerFactory()));
                 });
             }
 

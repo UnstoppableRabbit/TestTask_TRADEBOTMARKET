@@ -121,7 +121,8 @@ namespace BinanceScraperService
                         FirstFutures = _config.FirstFuturesCode,
                         SecondFutures = _config.SecondFuturesCode,
                         FirstFuturesPrice = kline.Value.Item1.OpenPrice,
-                        SecondFuturesPrice = kline.Value.Item2.OpenPrice
+                        SecondFuturesPrice = kline.Value.Item2.OpenPrice,
+                        SpreadValue = kline.Value.Item1.OpenPrice - kline.Value.Item2.OpenPrice
                     });
 
                 }

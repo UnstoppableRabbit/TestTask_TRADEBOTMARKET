@@ -10,6 +10,6 @@ namespace ArbitrageDomain.Model
         public Futures SecondFutures { get; set; }
         public decimal FirstFuturesPrice { get; set; }
         public decimal SecondFuturesPrice { get; set; }
-        public decimal SpreadValue => FirstFuturesPrice - SecondFuturesPrice;
+        public decimal SpreadValue { get; set; }
     }
 }

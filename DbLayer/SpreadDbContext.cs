@@ -19,6 +19,7 @@ namespace ArbitrageDomain.DbLayer
             {
                 string connectionString = this.connectionString;
                 optionsBuilder.UseNpgsql(connectionString);
+                //optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=BinanceSpreads;Username=postgres;Password=414876776"); //для CodeFirst создания базы через Ef-tools (нужно будет еще убрать конструкторы для корректного создания бд через команду Update-database)
                 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             }
         }

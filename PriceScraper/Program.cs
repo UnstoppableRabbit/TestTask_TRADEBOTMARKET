@@ -1,4 +1,6 @@
 using ArbitrageDomain.DbLayer;
+using ArbitrageDomain.Interfaces;
+using ArbitrageRepository;
 using Microsoft.EntityFrameworkCore;
 using PriceScraper.Scheduler.BackgroundWorker;
 using Quartz;
@@ -8,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpClient();
 builder.Services.AddDbContext<SpreadDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
-
+builder.Services.AddTransient<ISpreadRepository, SpreadRepository>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

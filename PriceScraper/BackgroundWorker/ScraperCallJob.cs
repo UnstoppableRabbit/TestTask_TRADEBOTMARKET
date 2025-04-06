@@ -34,10 +34,10 @@ namespace PriceScraper.Scheduler.BackgroundWorker
                 var result = JsonConvert.DeserializeObject<List<PairSpread>>(response);
                 foreach (var item in result) 
                 {
-                    var anyLikeThis = await _spreadRepository.AnySpreadLikeThis(item);
+                    var anyLikeThis = await _spreadRepository.AnySpreadToUpdate(item);
                     if (anyLikeThis.Item1)                                  //здесь я, в случае если в прошлый раз не удалось корректно получить цену на 1 из фьючерсов,
                                                                             //и при этом данные по этой дате пришли в этой итерации переписываю их в базе
-                        await _spreadRepository.UpdateSpreadAsync(anyLikeThis.Item2, item.FirstFuturesPrice, item.SecondFuturesPrice); 
+                       await _spreadRepository.UpdateSpreadAsync(anyLikeThis.Item2, item.FirstFuturesPrice, item.SecondFuturesPrice); 
                     else
                         await _spreadRepository.SaveSpreadAsync(item);
                 }

@@ -58,6 +58,7 @@ namespace ArbitrageRepository
                     throw new Exception($"Spread with id: {id} does not exists");
                 currentSpread.FirstFuturesPrice = firstFuturesPrice;
                 currentSpread.SecondFuturesPrice = secondFuturesPrice;
+                currentSpread.SpreadValue = firstFuturesPrice - secondFuturesPrice;
                 await _context.SaveChangesAsync();
             }
             catch //здесь я предполагаю что наш сервис не работает с UI / конечным пользователем, поэтому могу пробросить ошибку наверх
@@ -75,6 +76,7 @@ namespace ArbitrageRepository
                     throw new Exception($"Spread with id: {id} does not exists");
                 currentSpread.FirstFuturesPrice = firstFuturesPrice;
                 currentSpread.SecondFuturesPrice = secondFuturesPrice;
+                currentSpread.SpreadValue = firstFuturesPrice - secondFuturesPrice;
                 _context.SaveChanges();
             }
             catch //здесь я предполагаю что наш сервис не работает с UI / конечным пользователем, поэтому могу пробросить ошибку наверх
@@ -87,10 +89,11 @@ namespace ArbitrageRepository
         /// trying to find spread with same futures pair and date
         /// </summary>
         /// <returns>exists, id</returns>
-        public async Task<(bool, int)> AnySpreadLikeThis(PairSpread spread)
+        public async Task<(bool, int)> AnySpreadToUpdate(PairSpread spread)
         {
-            if (await _context.PairSpreads.AnyAsync(x => x.FirstFutures == spread.FirstFutures && x.SecondFutures == spread.SecondFutures && x.Date == x.Date))
-                return (true, (await _context.PairSpreads.FirstAsync(x => x.FirstFutures == spread.FirstFutures && x.SecondFutures == spread.SecondFutures && x.Date == x.Date)).Id);
+            if (await _context.PairSpreads.AnyAsync(x => x.FirstFutures == spread.FirstFutures && x.SecondFutures == spread.SecondFutures && x.Date == spread.Date && 
+                                                            (x.FirstFuturesPrice != spread.FirstFuturesPrice || x.SecondFuturesPrice != spread.SecondFuturesPrice)))
+                return (true, (await _context.PairSpreads.FirstAsync(x => x.FirstFutures == spread.FirstFutures && x.SecondFutures == spread.SecondFutures && x.Date == spread.Date)).Id);
             else
                 return (false, 0);
         }
