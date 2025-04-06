@@ -1,8 +1,5 @@
-using ArbitrageDomain.Config;
-using BinanceScraperService;
 using BinanceScraperService.Extensions;
 using BinanceScraperService.Helpers;
-using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -18,7 +18,7 @@ namespace BinanceScraperService.Controllers
         {
             var scraper = _scraperFactory.Get(pairName);
             if (scraper == null)
-                return NotFound($"Scraper с именем '{pairName}' не найден.");
+                return NotFound($"Scraper with name '{pairName}' not found.");
 
             var data = await scraper.GetPricesAsync();
             return Ok(data);
