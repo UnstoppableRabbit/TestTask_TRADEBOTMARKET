@@ -5,11 +5,11 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PriceScraper.Scheduler", "PriceScraper\PriceScraper.Scheduler.csproj", "{56334E79-AED1-4F50-AD19-B87E1A493112}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArbitrageDomain", "ArbitrageRepository\ArbitrageDomain.csproj", "{F914CBDC-87BC-463B-8ED6-68FCDF8DE8A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinanceScraperService", "BinanceScraperService\BinanceScraperService.csproj", "{9545CD20-6128-46BD-948E-9D6739574B72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinanceScraperService", "BinanceScraperService\BinanceScraperService.csproj", "{9545CD20-6128-46BD-948E-9D6739574B72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbLayer", "DbLayer\DbLayer.csproj", "{27771076-32B1-4496-97C9-B161DAEFA4AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbLayer", "DbLayer\DbLayer.csproj", "{27771076-32B1-4496-97C9-B161DAEFA4AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArbitrageDomain", "ArbitrageDomain\ArbitrageDomain.csproj", "{B1DD3311-AFFB-45EC-956C-3A7857F05D1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		{56334E79-AED1-4F50-AD19-B87E1A493112}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56334E79-AED1-4F50-AD19-B87E1A493112}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56334E79-AED1-4F50-AD19-B87E1A493112}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F914CBDC-87BC-463B-8ED6-68FCDF8DE8A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F914CBDC-87BC-463B-8ED6-68FCDF8DE8A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F914CBDC-87BC-463B-8ED6-68FCDF8DE8A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F914CBDC-87BC-463B-8ED6-68FCDF8DE8A8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9545CD20-6128-46BD-948E-9D6739574B72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9545CD20-6128-46BD-948E-9D6739574B72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9545CD20-6128-46BD-948E-9D6739574B72}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{27771076-32B1-4496-97C9-B161DAEFA4AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27771076-32B1-4496-97C9-B161DAEFA4AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27771076-32B1-4496-97C9-B161DAEFA4AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1DD3311-AFFB-45EC-956C-3A7857F05D1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1DD3311-AFFB-45EC-956C-3A7857F05D1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1DD3311-AFFB-45EC-956C-3A7857F05D1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1DD3311-AFFB-45EC-956C-3A7857F05D1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
