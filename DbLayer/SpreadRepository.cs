@@ -86,9 +86,9 @@ namespace ArbitrageRepository
         }
 
         /// <summary>
-        /// trying to find spread with same futures pair and date
+        /// Trying to find spread with same futures pair and date, where prices are not equal
         /// </summary>
-        /// <returns>exists, id</returns>
+        /// <returns>exists, spreadId</returns>
         public async Task<(bool, int)> AnySpreadToUpdate(PairSpread spread)
         {
             if (await _context.PairSpreads.AnyAsync(x => x.FirstFutures == spread.FirstFutures && x.SecondFutures == spread.SecondFutures && x.Date == spread.Date && 
@@ -98,6 +98,10 @@ namespace ArbitrageRepository
                 return (false, 0);
         }
 
+        /// <summary>
+        /// Trying to find spread with same futures pair and date
+        /// </summary>
+        /// <returns>exists, spreadId</returns>
         public async Task<(bool, int)> AnySpreadLikeThis(PairSpread spread)
         {
             if (await _context.PairSpreads.AnyAsync(x => x.FirstFutures == spread.FirstFutures && x.SecondFutures == spread.SecondFutures && x.Date == spread.Date))

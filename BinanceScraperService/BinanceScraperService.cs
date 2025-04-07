@@ -13,6 +13,8 @@ namespace BinanceScraperService
         private BinanceScraperConfig _config;
         private readonly HttpClient _httpClient;
         private readonly Serilog.ILogger _logger;
+        const string url = "https://dapi.binance.com/dapi/v1/exchangeInfo";
+
         public BinanceScraperService(BinanceScraperConfig config, HttpClient httpClient, string name, Serilog.ILogger logger)
         {
             _config = config;
@@ -25,7 +27,6 @@ namespace BinanceScraperService
         {
             try
             {
-                var url = "https://dapi.binance.com/dapi/v1/exchangeInfo";
                 var response = await _httpClient.GetStringAsync(url);
                 var json = JsonDocument.Parse(response);
 
@@ -47,7 +48,7 @@ namespace BinanceScraperService
                     }
                 }
 
-                return (firstFutures, secondFutures);
+                return (firstFutures!, secondFutures!);
             }
             catch (Exception ex)
             {
@@ -113,10 +114,10 @@ namespace BinanceScraperService
                     }
                 }
 
-                var result = new List<PairSpread>();
+                var spreads = new List<PairSpread>();
                 foreach (var kline in grouppedKlines)
                 {
-                    result.Add(new PairSpread
+                    spreads.Add(new PairSpread
                     {
                         Date = DateTimeOffset.FromUnixTimeMilliseconds(kline.Value.Item1.OpenTime).UtcDateTime, //тут можно привести дату к localTime если этого требует бизнес-логика
                         FirstFutures = _config.FirstFuturesCode,
@@ -127,7 +128,7 @@ namespace BinanceScraperService
                     });
 
                 }
-                return result;
+                return spreads;
             }
             catch (Exception ex)
             {

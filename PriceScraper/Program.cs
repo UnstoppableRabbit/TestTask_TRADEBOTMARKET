@@ -9,17 +9,19 @@ using Serilog;
 var builder = WebApplication.CreateBuilder(args);
 
 Log.Logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(builder.Configuration) // Чтение конфигурации из appsettings.json
+    .ReadFrom.Configuration(builder.Configuration)
     .Enrich.FromLogContext()
     .CreateLogger();
 
-// Используем Serilog для логирования
 builder.Host.UseSerilog();
 
 builder.Services.AddHttpClient();
+
 builder.Services.AddDbContext<SpreadDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
+
 builder.Services.AddTransient<ISpreadRepository, SpreadRepository>();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

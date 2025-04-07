@@ -1,6 +1,5 @@
 ﻿using ArbitrageDomain.Config;
 using ArbitrageDomain.Interfaces;
-using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 
 namespace BinanceScraperService.Extensions
